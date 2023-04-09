@@ -1,0 +1,3 @@
+/home/vale/Documents/FACULTAD/UBA-AED3/Guias/Ej2/cmake-build-debug/CMakeFiles/Ej2.dir
+/home/vale/Documents/FACULTAD/UBA-AED3/Guias/Ej2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/vale/Documents/FACULTAD/UBA-AED3/Guias/Ej2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
