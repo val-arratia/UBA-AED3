@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <vector>
-#include <cstdlib>
 #include <iostream>
 
 using namespace std;
@@ -57,7 +56,7 @@ int sumaParcialD2(vector<vector<int>> c,int pos1,int pos2){
     return s;
 }
 
-vector<vector<int>> cuadrado_magico(vector<vector<int>> &c, vector<int> &r, int m, int i, int j, int h){
+int cuadrado_magico(vector<vector<int>> &c, vector<int> &r, int m, int i, int j, int h){
     int n = c.size();
     int contador=0;
     vector<int> r2={};
@@ -65,7 +64,8 @@ vector<vector<int>> cuadrado_magico(vector<vector<int>> &c, vector<int> &r, int 
         if(r.size()==0 ){
             solucion = c;
             cont++;
-            return c;
+            return 1;
+        
         }
 
         for(int k=0; k<r.size(); k++){
@@ -95,9 +95,9 @@ vector<vector<int>> cuadrado_magico(vector<vector<int>> &c, vector<int> &r, int 
             }
 
             if(j==n-1){
-                solucion = cuadrado_magico(c,r2,m, i+1,0,h);
+                contador += cuadrado_magico(c,r2,m, i+1,0,h);
             }else{
-                solucion = cuadrado_magico(c,r2,m,i,j+1,h);
+                contador += cuadrado_magico(c,r2,m,i,j+1,h);
             }
 
             r2={};
@@ -106,7 +106,7 @@ vector<vector<int>> cuadrado_magico(vector<vector<int>> &c, vector<int> &r, int 
         }
 
     }
-    return c;
+        return contador;
 }
 
 int main(){
@@ -122,17 +122,19 @@ int main(){
     }
     vector<vector<int>> c (n,vector<int>(n));
 
-    vector<vector<int>> res = cuadrado_magico(c,r, m, 0,0,k);
+    int res = cuadrado_magico(c,r, m, 0,0,k);
 
-    printf("%dx%d magic squares (optimized): %d\n", n, n, k);
-    for(int k=0;k<res.size();k++){
-        for(int i=0;i<res[k].size();i++){
-            
-            printf(", %d",res[k][i]);
-
+    if(res < k){
+        cout << -1;
+    }else{
+        for(int k=0;k<solucion.size();k++){
+           for(int i=0;i<solucion[k].size();i++){
+               cout << solucion[k][i];
+               cout<< " ";
+           }
+            cout << endl;
         }
-
-        printf(";\n");
     }
+    
     return 0;
 }
