@@ -1,24 +1,14 @@
-#include <stdio.h>
 #include <vector>
 #include <cstdlib>
+#include <stdio.h>
 using namespace std;
 
-vector<vector<vector<int>>> todos;
-
-int magic_squares(int m, vector<vector<int>> &s, int i, int j, vector<int> &c, vector<int> &p, int h) {
+int magic_squares(int m, vector<vector<int>> &s, int i, int j, vector<int> &c, vector<int> &p) {
     int n = s.size();
+    if (j == n) return magic_squares(m, s, i + 1, 0, c, p); // Continue on next row.
+    if (i == n) return 1; // Square is filled (and valid because of the branch and bound checks).
     int r = 0; // Solutions counter.
-    if (j == n) return magic_squares(m, s, i + 1, 0, c, p, h); // Continue on next row.
-    if (i == n){
-        todos.push_back(s);
-        
-        return 1; // Square is filled (and valid because of the branch and bound checks).
-
-    }
-    
-    
     for (int k = 1; k <= n * n; k++) {
-        
         // Check if number is available.
         if (c[k - 1] == 1) continue;
 
@@ -56,17 +46,7 @@ int magic_squares(int m, vector<vector<int>> &s, int i, int j, vector<int> &c, v
         if (is_diagonal1) p[2 * n] += k;
         if (is_diagonal2) p[2 * n + 1] += k;
 
-        r += magic_squares(m, s, i, j + 1, c, p,h);
-        if(r==h){
-            return r;  
-            for(int w=0;w<s.size();w++){
-                for(int e=0;e<s[w].size();e++){
-                    printf(", %d",s[w][e]);
-                }
-            printf(";\n");
-            }
-        }
-        
+        r += magic_squares(m, s, i, j + 1, c, p);
 
         // Backtrack.
         c[k - 1] = 0;
@@ -80,10 +60,8 @@ int magic_squares(int m, vector<vector<int>> &s, int i, int j, vector<int> &c, v
 
 int main(int argc, char *argv[]) {
     // Parse input.
-    //int n = 3;
-    int n,k;
-    n=atoi(argv[1]);
-    k=atoi(argv[2]);
+    int n = atoi(argv[1]);
+
     // Initialize arguments.
     int m = (n * n * n + n) / 2; // magic number
     vector<vector<int>> s(n, vector<int>(n)); // magic square
@@ -93,17 +71,8 @@ int main(int argc, char *argv[]) {
     // col sums: p[n...2n-1]
     // diagonal sums: p[2n], p[2n+1]
 
-    int r = magic_squares(m, s, 0, 0, c, p,k);
+    int r = magic_squares(m, s, 0, 0, c, p);
     printf("%dx%d magic squares (optimized): %d\n", n, n, r);
-    for(int k=0;k<todos.size();k++){
-        for(int i=0;i<todos[k].size();i++){
-            for(int j=0;j<todos[k][i].size();j++){
-                printf(", %d",todos[k][i][j]);
-            }
-            printf(";\n");
-        }
-        printf(";;\n");
-        printf(";\n");
-    }
+
     return 0;
 }

@@ -60,7 +60,7 @@ int cuadrado_magico(vector<vector<int>> &c, vector<int> &r, int m, int i, int j,
     int n = c.size();
     int contador=0;
     vector<int> r2={};
-    if(cont<h){
+
         if(r.size()==0 ){
             solucion = c;
             cont++;
@@ -105,14 +105,14 @@ int cuadrado_magico(vector<vector<int>> &c, vector<int> &r, int m, int i, int j,
             c[i][j]=0;
         }
 
-    }
+    
         return contador;
 }
 
 int main(int argc, char *argv[]){
     int n,k;
     n=atoi(argv[1]);
-    k=atoi(argv[2]);
+
     //cin >> n;
     //cin >> k;
 
@@ -125,7 +125,7 @@ int main(int argc, char *argv[]){
     vector<vector<int>> c (n,vector<int>(n));
 
     int res = cuadrado_magico(c,r, m, 0,0,k);
-
+    cout<<res;
     if(res < k){
         cout << -1;
     }else{
