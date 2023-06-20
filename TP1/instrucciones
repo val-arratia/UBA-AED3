@@ -1,0 +1,6 @@
+Instrucciones de compilación y ejecución:
+
+1. Abrir la terminar en la carpeta donde se encuentran los ejercicios
+2. Compilar escribiendo en la terminal: g++ -o app EjercicioX.cpp con X representando el número del ejercicio a compilar
+3. Ejecutar escribiendo en la terminal: ./app
+4. Ingresar los valores de entrada y presionar Enter

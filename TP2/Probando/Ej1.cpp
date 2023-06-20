@@ -104,7 +104,7 @@ int main() {
 
 
     vector<pair<double,double>> aristas_sin_puentes;
-        /*
+        
     for(auto a:aristas){
         bool eliminar=false;
         for(auto p:puentes){
@@ -123,48 +123,13 @@ int main() {
         }
         
     }
-    */
-    vector<vector<double>> grafo_sin_puentes = grafo;
-    for(auto a:aristas){
-        for(auto p:puentes){
-            if(p.first>p.second){
-                int k=p.first;
-                p.first=p.second;
-                p.second=k;
-            }
-            if(a == p){
-                grafo_sin_puentes[a.first]={};
-                grafo_sin_puentes[a.second]={};
-                break;
-            }
-        }        
-    }
-    for(auto p:puentes){
-        if(p.first>p.second){
-            int k=p.first;
-            p.first=p.second;
-            p.second=k;
-        }
-        for(auto a:grafo[p.first]){
-            if(a != p.second){
-                grafo_sin_puentes[p.first].push_back(a);
-            } 
-        }
-
-    }
-
-
-
-/*
 
 //agrego aristas al nuevo grafo
-    
+    vector<vector<double>> grafo_sin_puentes(n+1,vector<double>());
     for (auto a : aristas_sin_puentes) {
         grafo_sin_puentes[a.first].push_back(a.second);
         grafo_sin_puentes[a.second].push_back(a.first);
     }
-
-*/
 
 
     //cuento elementos en cada comp. conexa

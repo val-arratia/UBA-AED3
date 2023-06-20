@@ -13,10 +13,11 @@ int cuadrado_magico(vector<vector<int>> &c, vector<vector<int>> &sp, vector<int>
     int n = c.size();
     int contador=0;
     if(cont<h){
-                if(i == n ){
+        if(i == n ){
             solucion = c;
             cont++;
             return 1;
+        
         }
 
         for(int k=0; k<r.size(); k++){
@@ -52,6 +53,7 @@ int cuadrado_magico(vector<vector<int>> &c, vector<vector<int>> &sp, vector<int>
                 sp[1][n] += r[k];//diag 2
 
             }
+           
 
             if (j == n-1) {
  
@@ -59,6 +61,7 @@ int cuadrado_magico(vector<vector<int>> &c, vector<vector<int>> &sp, vector<int>
             }else{
                  contador += cuadrado_magico(c,sp,r,d,m,i,j+1,h);
             }
+               
 
             c[i][j]=0;
             d[k] = true;
@@ -70,9 +73,12 @@ int cuadrado_magico(vector<vector<int>> &c, vector<vector<int>> &sp, vector<int>
             
             if(n-1-i==j){
                 sp[1][n] -= r[k];
-            }  
+            }
+            
         }
+    
     }
+
     return contador;
 }
 

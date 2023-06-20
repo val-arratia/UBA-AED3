@@ -8,6 +8,8 @@ const ll inf = 1e18;
 int n,m;
 vector<tuple<ll,int,int>> E;
 
+
+
 struct DSU{
 
     DSU(int n){
@@ -32,6 +34,8 @@ struct DSU{
     vector<int> rank;
 };
 
+
+//KRUSKAL PARA GRAFOS RALOS
 void kruskal(){
     sort(E.begin(),E.end());
     ll res = 0;
